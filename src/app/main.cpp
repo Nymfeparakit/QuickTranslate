@@ -1,4 +1,3 @@
-
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include "mainview.h"
@@ -14,7 +13,7 @@ int main(int argc, char *argv[])
     //if (engine.rootObjects().isEmpty())
     //    return -1;
 
-    QQuickView *mainViewImpl = new QQuickView(QUrl::fromLocalFile("../QuickTranslate/QuickTranslate/main.qml"));
+    QQuickView *mainViewImpl = new QQuickView(QUrl::fromLocalFile("../../../QuickTranslate2/src/app/main.qml"));
 
     MainView *mainView = new MainView(mainViewImpl);
 
