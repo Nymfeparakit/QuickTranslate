@@ -1,5 +1,6 @@
 #include "googletranslator.h"
 //#include <Python.h>
+#include "translator.h"
 
 GoogleTranslator::GoogleTranslator()
 {

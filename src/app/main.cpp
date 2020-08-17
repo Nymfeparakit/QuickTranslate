@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     //if (engine.rootObjects().isEmpty())
     //    return -1;
 
-    QQuickView *mainViewImpl = new QQuickView(QUrl::fromLocalFile("../../../QuickTranslate2/src/app/main.qml"));
+    QQuickView *mainViewImpl = new QQuickView(QUrl::fromLocalFile("../src/app/main.qml"));
 
     MainView *mainView = new MainView(mainViewImpl);
 
