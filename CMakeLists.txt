@@ -4,3 +4,5 @@ project(QuickTranslate VERSION 0.0.1)
 
 add_subdirectory(src/app)
 add_subdirectory(src/libc-googletrans)
+add_subdirectory(lib/googletest)
+add_subdirectory(tests)
