@@ -7,7 +7,7 @@ include_directories(${PYTHON_INCLUDE_DIRS})
 
 set(LIB_NAME libgoogletrans)
 
-add_library(${LIB_NAME} STATIC translator.cpp translator.h)
+add_library(${LIB_NAME} STATIC translator.cpp translator.h pyhelper.hpp)
 
 set_target_properties(
     ${LIB_NAME} PROPERTIES
