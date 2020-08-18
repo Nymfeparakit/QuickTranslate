@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include "mainview.h"
+#include "mainpresenter.h"
 
 int main(int argc, char *argv[])
 {
@@ -8,12 +9,7 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    //QQmlApplicationEngine engine;
-    //engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-    //if (engine.rootObjects().isEmpty())
-    //    return -1;
-
-    QQuickView *mainViewImpl = new QQuickView(QUrl::fromLocalFile("../src/app/main.qml"));
+    QQuickView *mainViewImpl = new QQuickView(QUrl::fromLocalFile("../QuickTranslate/src/app/main.qml"));
 
     MainView *mainView = new MainView(mainViewImpl);
 

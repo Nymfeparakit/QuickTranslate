@@ -8,13 +8,13 @@ class MainView : public IMainView
     Q_OBJECT
 public:
     MainView(QObject* _viewImpl);
-    QString getSourceText();
-    QString getSourceLanguage();
-    QString getDestLanguage();
+    std::string getSourceText();
+    std::string getSourceLanguage();
+    std::string getDestLanguage();
+    void connectToSignals();
 
 public slots:
     void translateButtonClicked();
-    void connectToSignals();
 
 private:
     MainPresenter* mainPresenter;

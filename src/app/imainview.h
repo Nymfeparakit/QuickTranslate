@@ -1,15 +1,16 @@
 #ifndef IMAINVIEW_H
 #define IMAINVIEW_H
 #include <QObject>
+#include <string>
 
 class IMainView : public QObject
 {
     Q_OBJECT
 
 public:
-    virtual QString getSourceText() = 0;
-    virtual QString getSourceLanguage() = 0;
-    virtual QString getDestLanguage() = 0;
+    virtual std::string getSourceText() = 0;
+    virtual std::string getSourceLanguage() = 0;
+    virtual std::string getDestLanguage() = 0;
 
 };
 

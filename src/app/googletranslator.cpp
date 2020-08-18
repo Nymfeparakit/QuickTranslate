@@ -1,18 +1,12 @@
 #include "googletranslator.h"
-//#include <Python.h>
 #include "translator.h"
-
-GoogleTranslator::GoogleTranslator()
-{
-
-}
+#include <iostream>
+#include <QDebug>
 
 std::string GoogleTranslator::translate(std::string sourceText, std::string destLang, std::string sourceLang)
 {
-    /*
-    Py_Initialize();
-    PyRun_SimpleString("from time import time,ctime\n");
-    Py_Finalize();
-    */
+    qDebug() << "calling translate";
+    Translator t;
+    t.translate(sourceText, destLang, sourceLang);
+    return "";
 }
-

@@ -4,7 +4,7 @@ import QtQuick 2.0
         color: "#4e4e4e"
         radius: 10
 
-        StyledTextItem {
+        StyledTextEditItem {
             objectName: "textArea"
             anchors.fill: parent
             anchors.leftMargin: 20

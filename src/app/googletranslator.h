@@ -5,7 +5,6 @@
 class GoogleTranslator
 {
 public:
-    GoogleTranslator();
     std::string translate(std::string sourceText, std::string destLang, std::string sourceLang = "");
 };
 

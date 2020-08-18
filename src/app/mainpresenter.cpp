@@ -1,4 +1,7 @@
 #include "mainpresenter.h"
+#include "googletranslator.h"
+#include <QDebug>
+#include <iostream>
 
 MainPresenter::MainPresenter(IMainView* _mainView)
     :mainView(_mainView)
@@ -9,11 +12,20 @@ MainPresenter::MainPresenter(IMainView* _mainView)
 void MainPresenter::onTranslate()
 {
     //TODO replace QString with c++ string
-    QString text = mainView->getSourceText();//достаем текст источника от view
+    std::string text = mainView->getSourceText();//достаем текст источника от view
+    //qDebug() << "Source text: " << QString::fromStdString(text);
+    //std::cout << "Source text: " << text;
     //достаем source, dest языки
-    QString sourceLang = mainView->getSourceLanguage();
-    QString destLang = mainView->getDestLanguage();
+    std::string sourceLang = mainView->getSourceLanguage();
+    //qDebug() << "Source lang: " << QString::fromStdString(sourceLang);
+    std::string destLang = mainView->getDestLanguage();
+    //qDebug() << "Dest lang: " << QString::fromStdString(destLang);
     //получаем перевод
+    qDebug() << "ready to translate text 2";
+    GoogleTranslator t;
+    //std::string translatedText = t.translate(text, destLang, sourceLang);
+    t.translate(text, destLang, sourceLang);
+    int a = 0;
     //передаем текст view
 }
 

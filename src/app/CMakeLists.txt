@@ -6,7 +6,7 @@ set(APP_EXE main_app)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}) # set directory for executable
+#set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}) # set directory for executable
 
 find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 
@@ -33,8 +33,9 @@ set_target_properties(
 
 target_include_directories(
     ${APP_EXE}
-    PRIVATE
+    PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/../libc-googletrans
 )
 
-target_link_libraries(${APP_EXE} Qt5::Core Qt5::Quick lib)
+#target_link_libraries(${APP_EXE} Qt5::Core Qt5::Quick)
+target_link_libraries(${APP_EXE} libgoogletrans Qt5::Core Qt5::Quick)
