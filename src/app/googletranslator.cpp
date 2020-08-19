@@ -7,6 +7,12 @@ std::string GoogleTranslator::translate(std::string sourceText, std::string dest
 {
     qDebug() << "calling translate";
     Translator t;
-    t.translate(sourceText, destLang, sourceLang);
-    return "";
+    std::string translatedText = t.translate(sourceText, destLang, sourceLang);
+    return translatedText;
+}
+
+std::map<std::string, std::string> GoogleTranslator::getSupportedLanguagesNamesAndCodes()
+{
+   Translator t;
+   return t.getSupportedLanguagesNamesAndCodes();
 }

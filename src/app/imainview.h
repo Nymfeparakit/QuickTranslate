@@ -1,17 +1,16 @@
 #ifndef IMAINVIEW_H
 #define IMAINVIEW_H
-#include <QObject>
 #include <string>
+#include <map>
 
-class IMainView : public QObject
+class IMainView
 {
-    Q_OBJECT
-
 public:
     virtual std::string getSourceText() = 0;
     virtual std::string getSourceLanguage() = 0;
     virtual std::string getDestLanguage() = 0;
-
+    virtual void showTranslatedText(std::string text) = 0;
+    virtual void showSupportedLangsList(std::map<std::string, std::string>) = 0;
 };
 
 #endif // IMAINVIEW_H

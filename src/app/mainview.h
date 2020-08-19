@@ -2,8 +2,9 @@
 #define MAINVIEW_H
 #include "mainpresenter.h"
 #include <QtQuick>
+#include <QObject>
 
-class MainView : public IMainView
+class MainView : public QObject, IMainView
 {
     Q_OBJECT
 public:
@@ -11,7 +12,8 @@ public:
     std::string getSourceText();
     std::string getSourceLanguage();
     std::string getDestLanguage();
-    void connectToSignals();
+    void showTranslatedText(std::string text);
+    void showSupportedLangsList(std::map<std::string, std::string>);
 
 public slots:
     void translateButtonClicked();
@@ -20,6 +22,7 @@ private:
     MainPresenter* mainPresenter;
     QObject* viewImpl;
     QObject* mainLayout;
+    void connectToSignals();
 };
 
 #endif // MAINVIEW_H

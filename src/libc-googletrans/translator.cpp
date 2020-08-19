@@ -4,18 +4,8 @@
 #include <pyhelper.hpp>
 #include <iostream>
 
-void Translator::translate(std::string sourceText, std::string destLang, std::string sourceLang)
+std::string Translator::translate(std::string sourceText, std::string destLang, std::string sourceLang)
 {
-  /*
-  Py_Initialize();
-  PyRun_SimpleString("from googletrans import Translator\n"
-          "translator = Translator()\n");
-  std::ostringstream ostream;
-  ostream << "print(translator.translate('" << sourceText << "', dest='ru'))\n";
-  std::string tmp{ostream.str()};
-  PyRun_SimpleString(tmp.c_str()); //function accepts only const char*
-  Py_Finalize();
-  */
 
     CPyInstance instance;
     CPyObject googleTransObj = PyUnicode_FromString("googletrans");
@@ -41,10 +31,32 @@ void Translator::translate(std::string sourceText, std::string destLang, std::st
         std::cout << PyObject_HasAttrString(translatedRes, "text");
         CPyObject textObj = PyObject_GetAttrString(translatedRes, "text");
         const char* translatedText = PyUnicode_AsUTF8(textObj);
-        CPyObject destObj = PyObject_GetAttrString(translatedRes, "dest");
-        const char* destLang = PyUnicode_AsUTF8(destObj);
-        std::cout << translatedText << " " << destLang;
+        return translatedText;
     } else {
         std::cout << "googletrans module was not imported";
+        return "";
     }
+
+}
+
+std::map<std::string, std::string> Translator::getSupportedLanguagesNamesAndCodes()
+{
+   CPyInstance instance;
+   CPyObject googleTransObj = PyUnicode_FromString("googletrans");
+   CPyObject googletransModule = PyImport_Import(googleTransObj); // import googletrans
+
+   std::map<std::string, std::string> languagesMap;
+   if (googletransModule) {
+       CPyObject languagesDictObj = PyObject_GetAttrString(googletransModule, "LANGUAGES");
+       PyObject *key, *value;
+       Py_ssize_t pos = 0;
+
+       while(PyDict_Next(languagesDictObj, &pos, &key, &value)) {
+           std::string langCode = PyUnicode_AsUTF8(key);
+           std::string langName = PyUnicode_AsUTF8(value);
+           languagesMap.insert(std::pair<std::string, std::string>(langName, langCode));
+       }
+   }
+
+   return languagesMap;
 }

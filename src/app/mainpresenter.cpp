@@ -6,7 +6,7 @@
 MainPresenter::MainPresenter(IMainView* _mainView)
     :mainView(_mainView)
 {
-
+    loadLanguagesList();
 }
 
 void MainPresenter::onTranslate()
@@ -23,9 +23,16 @@ void MainPresenter::onTranslate()
     //получаем перевод
     qDebug() << "ready to translate text 2";
     GoogleTranslator t;
-    //std::string translatedText = t.translate(text, destLang, sourceLang);
-    t.translate(text, destLang, sourceLang);
-    int a = 0;
-    //передаем текст view
+    std::string translatedText = t.translate(text, destLang, sourceLang);
+    std::cout << "presenter got translated text: " << translatedText << std::endl;
+    mainView->showTranslatedText(translatedText); //передаем текст view
+}
+
+void MainPresenter::loadLanguagesList()
+{
+   GoogleTranslator t;
+   //get from current translator languages list
+   std::map<std::string, std::string> langsNamesAndCodes = t.getSupportedLanguagesNamesAndCodes();
+
 }
 

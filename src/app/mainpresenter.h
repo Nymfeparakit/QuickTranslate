@@ -10,6 +10,7 @@ public:
 
 private:
     IMainView *mainView;
+    void loadLanguagesList();
 };
 
 #endif // MAINPRESENTER_H

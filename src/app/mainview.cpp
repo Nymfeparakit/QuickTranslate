@@ -1,6 +1,7 @@
 #include "mainview.h"
 #include <QDebug>
 #include <typeinfo>
+#include <langslistmodel.h>
 
 MainView::MainView(QObject* _viewImpl)
      :viewImpl(_viewImpl)
@@ -8,7 +9,6 @@ MainView::MainView(QObject* _viewImpl)
     mainPresenter = new MainPresenter(this);
     mainLayout = (static_cast<QQuickView*>(viewImpl))->rootObject();
     connectToSignals();
-    //mainPresenter->onTranslate();
 }
 
 std::string MainView::getSourceText()
@@ -28,7 +28,28 @@ std::string MainView::getSourceLanguage()
 
 std::string MainView::getDestLanguage()
 {
-   return "Russian";
+    QObject *destLangBox = mainLayout->findChild<QObject*>("destLangBox");
+    //destLangBox->itemData(sourceLangBox->currentIndex());
+    return "Russian";
+}
+
+void MainView::showTranslatedText(std::string text)
+{
+    QObject *sourceTextRect = mainLayout->findChild<QObject*>("translatedTextRect");
+    QObject *sourceTextItem = sourceTextRect->findChild<QObject*>("textArea");
+    sourceTextItem->setProperty("text", text.c_str());
+}
+
+void MainView::showSupportedLangsList(std::map<std::string, std::string> langsMap)
+{
+    QObject *sourceLangBox = mainLayout->findChild<QObject*>("sourceLangBox");
+    std::map<int, std::pair<std::string, std::string>> langsMapWithIndexes;
+    int counter = 0;
+    for (auto& item : langsMap) {
+        langsMapWithIndexes.insert(std::pair<int, std::pair<std::string, std::string>>(counter, item));
+    }
+    LangsListModel langsModel(langsMapWithIndexes);
+    //sourceLangBox->setProperty("model", langsModel);
 }
 
 void MainView::translateButtonClicked()

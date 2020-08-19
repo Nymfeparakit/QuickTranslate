@@ -72,6 +72,7 @@ import QtQuick.Layouts 1.1
         }
 
         TranslateTextRect {
+        objectName: "translatedTextRect"
         Layout.columnSpan: 3
         Layout.rowSpan: 3
         Layout.fillHeight: true
