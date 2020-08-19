@@ -6,7 +6,7 @@ LangsListModel::LangsListModel(QObject *parent)
 
 }
 
-LangsListModel::LangsListModel(const std::map<int, std::pair<std::string, std::string> > &_langsList, QObject *parent)
+LangsListModel::LangsListModel(const LanguagesList &_langsList, QObject *parent)
     :QAbstractListModel(parent), langsList(_langsList)
 {
 
@@ -25,7 +25,7 @@ QVariant LangsListModel::data(const QModelIndex &index, int role) const
     }
 
     if (role == Qt::DisplayRole) {
-        QString langNameQStr = QString::fromStdString(langsList.at(index.row()).first);
+        QString langNameQStr = QString::fromStdString(langsList.at(index.row()).name);
         return QVariant(langNameQStr);
     } else {
         return QVariant();

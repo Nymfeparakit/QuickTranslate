@@ -13,6 +13,7 @@ find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 set(SOURCES
     googletranslator.cpp
     langslistmodel.cpp
+    languageslist.cpp
     main.cpp
     mainpresenter.cpp
     mainview.cpp
@@ -21,6 +22,7 @@ set(HEADERS
     googletranslator.h
     imainview.h
     langslistmodel.h
+    languageslist.h
     mainpresenter.h
     mainview.h
 )

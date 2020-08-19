@@ -3,10 +3,15 @@
 #include <QDebug>
 #include <iostream>
 
-MainPresenter::MainPresenter(IMainView* _mainView)
+/*MainPresenter::MainPresenter(IMainView* _mainView)
     :mainView(_mainView)
 {
     loadLanguagesList();
+}*/
+
+MainPresenter::MainPresenter()
+{
+
 }
 
 void MainPresenter::onTranslate()
@@ -28,11 +33,17 @@ void MainPresenter::onTranslate()
     mainView->showTranslatedText(translatedText); //передаем текст view
 }
 
-void MainPresenter::loadLanguagesList()
+LanguagesList& MainPresenter::loadLanguagesList()
 {
    GoogleTranslator t;
    //get from current translator languages list
    std::map<std::string, std::string> langsNamesAndCodes = t.getSupportedLanguagesNamesAndCodes();
-
+   LanguagesList langsList;
+   for (auto& x : langsNamesAndCodes) {
+       LanguageItem item(x.first, x.second);
+       langsList.append(item);
+   }
+   return langsList;
+   //mainView->showSupportedLangsList(langsNamesAndCodes);
 }
 

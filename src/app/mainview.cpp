@@ -6,7 +6,7 @@
 MainView::MainView(QObject* _viewImpl)
      :viewImpl(_viewImpl)
 {
-    mainPresenter = new MainPresenter(this);
+    //mainPresenter = new MainPresenter(this);
     mainLayout = (static_cast<QQuickView*>(viewImpl))->rootObject();
     connectToSignals();
 }
@@ -42,6 +42,7 @@ void MainView::showTranslatedText(std::string text)
 
 void MainView::showSupportedLangsList(std::map<std::string, std::string> langsMap)
 {
+    /*
     QObject *sourceLangBox = mainLayout->findChild<QObject*>("sourceLangBox");
     std::map<int, std::pair<std::string, std::string>> langsMapWithIndexes;
     int counter = 0;
@@ -49,7 +50,7 @@ void MainView::showSupportedLangsList(std::map<std::string, std::string> langsMa
         langsMapWithIndexes.insert(std::pair<int, std::pair<std::string, std::string>>(counter, item));
     }
     LangsListModel langsModel(langsMapWithIndexes);
-    //sourceLangBox->setProperty("model", langsModel);
+    */
 }
 
 void MainView::translateButtonClicked()
