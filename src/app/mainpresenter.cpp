@@ -33,7 +33,7 @@ void MainPresenter::onTranslate()
     mainView->showTranslatedText(translatedText); //передаем текст view
 }
 
-LanguagesList& MainPresenter::loadLanguagesList()
+LanguagesList MainPresenter::loadLanguagesList()
 {
    GoogleTranslator t;
    //get from current translator languages list

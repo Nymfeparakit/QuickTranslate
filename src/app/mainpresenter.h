@@ -10,7 +10,7 @@ public:
     MainPresenter();
     void setView(IMainView* _mainView);
     void onTranslate();
-    LanguagesList& loadLanguagesList();
+    LanguagesList loadLanguagesList();
 
 private:
     IMainView *mainView;

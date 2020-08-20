@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <string>
-#include <QVector>
+//#include <QVector>
 
 struct LanguageItem {
     std::string code;
@@ -12,7 +12,8 @@ struct LanguageItem {
     LanguageItem(std::string _code, std::string _name)
         :code(_code), name(_name) {}
 
-    LanguageItem() {}
+    LanguageItem() = default;
+    ~LanguageItem() = default;
 };
 
 class LanguagesList : public QObject
@@ -21,7 +22,9 @@ class LanguagesList : public QObject
 public:
     LanguagesList(QObject *parent = nullptr);
     LanguagesList(const LanguagesList& l);
-    QVector<LanguageItem> items() const;
+    //LanguagesList& operator=(const LanguagesList&);
+    //LanguagesList& operator=(LanguagesList&);
+    std::vector<LanguageItem> items() const;
     void append(LanguageItem item);
     int size() const;
     LanguageItem at(const int index) const;
@@ -31,7 +34,8 @@ signals:
 public slots:
 
 private:
-    QVector<LanguageItem> mItems;
+    //QVector<LanguageItem> mItems;
+    std::vector<LanguageItem> mItems;
 };
 
 #endif // LANGUAGESLIST_H

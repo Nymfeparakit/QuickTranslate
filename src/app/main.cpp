@@ -12,20 +12,23 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     qmlRegisterType<LangsListModel>("Languages", 1, 0, "LangsListModel");
-    qmlRegisterUncreatableType<LanguagesList>("Languages", 1, 0, "LangsList",
-                                                                                   QStringLiteral("Should not be created in QML"));
+    //qmlRegisterUncreatableType<LanguagesList>("Languages", 1, 0, "LangsList",
+                                              //QStringLiteral("Should not be created in QML"));
     //std::map<int, std::pair<std::string, std::string>>langsList;
     MainPresenter *mainPresenter = new MainPresenter();
-    LanguagesList langsList = mainPresenter->loadLanguagesList();
+    //LanguagesList langsList(mainPresenter->loadLanguagesList());
+    //LanguagesList langsList;
 
     //QQuickView *mainViewImpl = new QQuickView(QUrl::fromLocalFile("../QuickTranslate/src/app/main.qml"));
     QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty(QStringLiteral("languagesList"), QVariant::fromValue(&langsList));
-    engine.load(QUrl::fromLocalFile("../QuickTranslate/src/app/main.qml"));
-    //QQuickView *mainViewImpl = new QQuickView(QUrl::fromLocalFile("../QuickTranslate/src/app/main.qml"));
-    //QQuickView *mainViewImpl = static_cast<QQuickView*>(engine.rootObjects().at(0));
-    QObject *mainViewImpl = engine.rootObjects().at(0);
+    //engine.rootContext()->setContextProperty(QStringLiteral("languagesList"), QVariant::fromValue(&langsList));
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    //engine.load("../QuickTranslate/src/app/main.qml");
 
+    //QQuickView *mainViewImpl = new QQuickView(QUrl(QStringLiteral("qrc:/main.qml")));
+
+    //auto rootObjs = engine.rootObjects();
+    //QObject* mainViewImpl = engine.rootObjects().at(0);
 
     //MainView *mainView = new MainView(mainViewImpl);
 

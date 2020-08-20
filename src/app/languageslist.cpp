@@ -5,24 +5,39 @@ LanguagesList::LanguagesList(QObject *parent) : QObject(parent)
 
 }
 
-LanguagesList::LanguagesList(const LanguagesList &l)
+LanguagesList::LanguagesList(const LanguagesList &other)
 {
-   mItems = l.items();
+    int a = 0;
+    mItems = other.items();
 }
 
-QVector<LanguageItem> LanguagesList::items() const
+/*
+LanguagesList &LanguagesList::operator=(const LanguagesList &other)
+{
+    mItems = other.items();
+    return *this;
+}
+
+LanguagesList &LanguagesList::operator=(LanguagesList &other)
+{
+    mItems = other.items();
+    return *this;
+}
+*/
+
+std::vector<LanguageItem> LanguagesList::items() const
 {
    return mItems;
 }
 
 void LanguagesList::append(LanguageItem item)
 {
-    mItems.append(item);
+    mItems.push_back(item);
 }
 
 int LanguagesList::size() const
 {
-    return mItems.count();
+    return mItems.size();
 }
 
 LanguageItem LanguagesList::at(const int index) const
