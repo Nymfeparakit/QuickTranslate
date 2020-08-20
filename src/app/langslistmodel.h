@@ -3,6 +3,7 @@
 #include <QAbstractListModel>
 #include <map>
 #include "languageslist.h"
+#include "mainpresenter.h"
 
 class LangsListModel : public QAbstractListModel
 {
@@ -23,6 +24,7 @@ public:
 private:
     //std::map<int, std::pair<std::string, std::string>>langsList;
     LanguagesList* mLangsList;
+    MainPresenter mainPresenter;
 
     enum {
         NameRole = Qt::UserRole

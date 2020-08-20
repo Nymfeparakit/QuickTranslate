@@ -3,11 +3,12 @@
 LangsListModel::LangsListModel(QObject *parent)
     :QAbstractListModel(parent)
 {
-    mLangsList = new LanguagesList();
-    LanguageItem temp("code1", "name1");
-    LanguageItem temp2("code2", "name2");
-    mLangsList->append(temp);
-    mLangsList->append(temp2);
+    mLangsList = mainPresenter.loadLanguagesList();
+    //mLangsList = new LanguagesList();
+    //LanguageItem temp("code1", "name1");
+    //LanguageItem temp2("code2", "name2");
+    //mLangsList->append(temp);
+    //mLangsList->append(temp2);
 }
 
 /*

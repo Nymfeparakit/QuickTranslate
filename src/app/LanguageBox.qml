@@ -4,15 +4,13 @@ import QtQuick.Controls 2.2
 import Languages 1.0
 
     ComboBox {
-        //model: ["English", "French", "Russian"]
         model: LangsListModel {
             id: cbItems
         }
         textRole: model.name
-       // delegate: Text {
-       //     text: model.name
-       // }
-       //activated: console.log("element was chosen")
+
+        //reduce size of drop-down (on default it has size of window)
+        popup.contentItem.implicitHeight: Math.min(250, popup.contentItem.contentHeight);
     }
 
 
