@@ -27,10 +27,9 @@ int main(int argc, char *argv[])
 
     //QQuickView *mainViewImpl = new QQuickView(QUrl(QStringLiteral("qrc:/main.qml")));
 
-    //auto rootObjs = engine.rootObjects();
-    //QObject* mainViewImpl = engine.rootObjects().at(0);
+    QObject* mainViewImpl = engine.rootObjects().at(0);
 
-    //MainView *mainView = new MainView(mainViewImpl);
+    MainView *mainView = new MainView(mainViewImpl);
 
     //mainViewImpl->show();
 

@@ -17,7 +17,7 @@ std::string Translator::translate(std::string sourceText, std::string destLang, 
         CPyObject translatorObj = PyObject_CallObject(translatorObjCallable, NULL); // get translator object
         //build args for method
         CPyObject sourceTextArg = Py_BuildValue("(s)", sourceText.c_str());
-        CPyObject destLangArg = Py_BuildValue("s", "fr");
+        CPyObject destLangArg = Py_BuildValue("s", destLang.c_str());
         CPyObject keywords = PyDict_New();
         PyDict_SetItemString(keywords, "dest", destLangArg);
         CPyObject translateMethod = PyObject_GetAttrString(translatorObj, "translate");
@@ -28,7 +28,6 @@ std::string Translator::translate(std::string sourceText, std::string destLang, 
         } else {
             std::cout << "res is null" << std::endl;
         }
-        std::cout << PyObject_HasAttrString(translatedRes, "text");
         CPyObject textObj = PyObject_GetAttrString(translatedRes, "text");
         const char* translatedText = PyUnicode_AsUTF8(textObj);
         return translatedText;

@@ -6,8 +6,10 @@
 MainView::MainView(QObject* _viewImpl)
      :viewImpl(_viewImpl)
 {
-    //mainPresenter = new MainPresenter(this);
+    mainPresenter = new MainPresenter(this);
     mainLayout = (static_cast<QQuickView*>(viewImpl))->rootObject();
+    //mainLayout = viewImpl->findChild("mainLayout");
+    mainLayout = viewImpl->children().at(1);
     connectToSignals();
 }
 
@@ -22,15 +24,15 @@ std::string MainView::getSourceText()
 std::string MainView::getSourceLanguage()
 {
     QObject *sourceLangBox = mainLayout->findChild<QObject*>("sourceLangBox");
-    //sourceLangBox->itemData(sourceLangBox->currentIndex());
-    return "English";
+    QString selectedLanguage = sourceLangBox->property("currentText").toString();
+    return selectedLanguage.toStdString();
 }
 
 std::string MainView::getDestLanguage()
 {
     QObject *destLangBox = mainLayout->findChild<QObject*>("destLangBox");
-    //destLangBox->itemData(sourceLangBox->currentIndex());
-    return "Russian";
+    QString selectedLanguage = destLangBox->property("currentText").toString();
+    return selectedLanguage.toStdString();
 }
 
 void MainView::showTranslatedText(std::string text)

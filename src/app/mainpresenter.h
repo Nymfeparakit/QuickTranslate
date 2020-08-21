@@ -6,8 +6,8 @@
 class MainPresenter
 {
 public:
-    //MainPresenter(IMainView *_mainView);
-    MainPresenter();
+    MainPresenter(IMainView *_mainView);
+    MainPresenter() = default;
     void setView(IMainView* _mainView);
     void onTranslate();
     LanguagesList* loadLanguagesList();
