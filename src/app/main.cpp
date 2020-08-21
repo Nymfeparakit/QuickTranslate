@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     //QQuickView *mainViewImpl = new QQuickView(QUrl::fromLocalFile("../QuickTranslate/src/app/main.qml"));
     QQmlApplicationEngine engine;
     //engine.rootContext()->setContextProperty(QStringLiteral("languagesList"), QVariant::fromValue(&langsList));
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
     //engine.load("../QuickTranslate/src/app/main.qml");
 
     //QQuickView *mainViewImpl = new QQuickView(QUrl(QStringLiteral("qrc:/main.qml")));

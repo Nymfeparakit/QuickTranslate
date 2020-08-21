@@ -1,5 +1,5 @@
 #include "translator.h"
-#include "Python.h"
+#include <Python.h>
 #include <sstream>
 #include <pyhelper.hpp>
 #include <iostream>
@@ -12,7 +12,6 @@ std::string Translator::translate(std::string sourceText, std::string destLang, 
     CPyObject googletransModule = PyImport_Import(googleTransObj); // import googletrans
 
     if (googletransModule) {
-        std::cout << "googletrans module was imported" << std::endl;
         CPyObject translatorObjCallable = PyObject_GetAttrString(googletransModule, "Translator");
         CPyObject translatorObj = PyObject_CallObject(translatorObjCallable, NULL); // get translator object
         //build args for method
@@ -22,17 +21,10 @@ std::string Translator::translate(std::string sourceText, std::string destLang, 
         PyDict_SetItemString(keywords, "dest", destLangArg);
         CPyObject translateMethod = PyObject_GetAttrString(translatorObj, "translate");
         CPyObject translatedRes = PyObject_Call(translateMethod, sourceTextArg, keywords);
-        if (translatedRes) {
-            std::cout << "res is not null" << std::endl;
-            std::cout << PyObject_Print(translatedRes, stdout, 0) << std::endl;
-        } else {
-            std::cout << "res is null" << std::endl;
-        }
         CPyObject textObj = PyObject_GetAttrString(translatedRes, "text");
         const char* translatedText = PyUnicode_AsUTF8(textObj);
         return translatedText;
     } else {
-        std::cout << "googletrans module was not imported";
         return "";
     }
 

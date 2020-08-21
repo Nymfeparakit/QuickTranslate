@@ -16,6 +16,6 @@ link_directories(
 add_subdirectory(src/app)
 add_subdirectory(src/libc-googletrans)
 add_subdirectory(lib/googletest)
-#add_subdirectory(tests)
+add_subdirectory(tests)
 
 #target_link_libraries(${APP_EXE} ${PYTHON_LIBRARIES})
