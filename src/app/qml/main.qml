@@ -8,7 +8,7 @@ Window {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World again")
+    title: qsTr("")
     color: "#333333"
 
 
@@ -42,34 +42,11 @@ Window {
             Layout.fillWidth: true
         }
 
-        LanguageBox {
-            objectName: "sourceLangBox"
-
-            anchors.right: swapLangsBtn.left
-            anchors.rightMargin: 30
-            Layout.columnSpan: 1
-            Layout.rowSpan: 1
-        }
-
-        SimpleButton {
-            id: swapLangsBtn
-
-            Layout.columnSpan: 1
-            Layout.rowSpan: 1
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            contentItem: StyledTextItem {
-                text: "Change"
-            }
-        }
-
-        LanguageBox {
-            objectName: "destLangBox"
-
-            anchors.left: swapLangsBtn.right
-            anchors.leftMargin: 30
-            Layout.columnSpan: 1
-            Layout.rowSpan: 1
+        SeparatingStrip {
+        Layout.columnSpan: 3
+        Layout.rowSpan: 1
+        Layout.fillHeight: true
+        Layout.fillWidth: true
         }
 
         TranslateTextRect {
@@ -80,11 +57,22 @@ Window {
         Layout.fillWidth: true
         }
 
+        LanguageBox {
+            objectName: "destLangBox"
+
+            //anchors.left: swapLangsBtn.right
+            anchors.left: parent.left
+            anchors.leftMargin: 30
+            Layout.columnSpan: 1
+            Layout.rowSpan: 1
+        }
+
         SimpleButton {
             objectName: "translateBtn"
             Layout.columnSpan: 1
             Layout.rowSpan: 1
-            anchors.horizontalCenter: parent.horizontalCenter
+            //anchors.horizontalCenter: parent.horizontalCenter
+            anchors.right: parent.right
 
             signal clickedSignal()
             onClicked: clickedSignal()

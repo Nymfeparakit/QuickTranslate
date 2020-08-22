@@ -5,7 +5,6 @@
 
 std::string GoogleTranslator::translate(std::string sourceText, std::string destLang, std::string sourceLang)
 {
-    qDebug() << "calling translate";
     Translator t;
     std::string translatedText = t.translate(sourceText, destLang, sourceLang);
     return translatedText;

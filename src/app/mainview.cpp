@@ -8,7 +8,6 @@ MainView::MainView(QObject* _viewImpl)
 {
     mainPresenter = new MainPresenter(this);
     mainLayout = (static_cast<QQuickView*>(viewImpl))->rootObject();
-    //mainLayout = viewImpl->findChild("mainLayout");
     mainLayout = viewImpl->children().at(1);
     connectToSignals();
 }
@@ -37,9 +36,12 @@ std::string MainView::getDestLanguage()
 
 void MainView::showTranslatedText(std::string text)
 {
-    QObject *sourceTextRect = mainLayout->findChild<QObject*>("translatedTextRect");
-    QObject *sourceTextItem = sourceTextRect->findChild<QObject*>("textArea");
-    sourceTextItem->setProperty("text", text.c_str());
+    QObject *translatedTextRect = mainLayout->findChild<QObject*>("translatedTextRect");
+    QObject *textArea = translatedTextRect->findChild<QObject*>("textArea");
+    textArea->setProperty("text", text.c_str());
+
+    //QObject *translatedTextItem = mainLayout->findChild<QObject*>("translatedText");
+    //translatedTextItem->setProperty("text", text.c_str());
 }
 
 void MainView::showSupportedLangsList(std::map<std::string, std::string> langsMap)
@@ -57,7 +59,6 @@ void MainView::showSupportedLangsList(std::map<std::string, std::string> langsMa
 
 void MainView::translateButtonClicked()
 {
-    //qDebug() << "translate button clicked";
     mainPresenter->onTranslate();
 }
 

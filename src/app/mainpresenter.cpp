@@ -10,14 +10,12 @@ MainPresenter::MainPresenter(IMainView* _mainView)
 
 void MainPresenter::onTranslate()
 {
-    std::string text = mainView->getSourceText();//достаем текст источника от view
-    //достаем source, dest языки
-    std::string sourceLang = mainView->getSourceLanguage();
-    std::string destLang = mainView->getDestLanguage();
-    //получаем перевод
+    std::string text = mainView->getSourceText();
+    std::string destLang = mainView->getDestLanguage(); //get dest language
+    //get translation
     GoogleTranslator t;
-    std::string translatedText = t.translate(text, destLang, sourceLang);
-    mainView->showTranslatedText(translatedText); //передаем текст view
+    std::string translatedText = t.translate(text, destLang);
+    mainView->showTranslatedText(translatedText);
 }
 
 LanguagesList *MainPresenter::loadLanguagesList()
@@ -31,6 +29,5 @@ LanguagesList *MainPresenter::loadLanguagesList()
        langsList->append(item);
    }
    return langsList;
-   //mainView->showSupportedLangsList(langsNamesAndCodes);
 }
 

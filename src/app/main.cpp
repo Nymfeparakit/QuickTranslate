@@ -21,6 +21,5 @@ int main(int argc, char *argv[])
     QObject* mainViewImpl = engine.rootObjects().at(0);
     MainView *mainView = new MainView(mainViewImpl);
 
-
     return app.exec();
 }
