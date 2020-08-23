@@ -39,12 +39,19 @@ std::string MainView::getDestLanguage()
 
 void MainView::showTranslatedText(std::string text)
 {
-    QObject *translatedTextRect = mainLayout->findChild<QObject*>("translatedTextRect");
+    QObject *translatedTextRect;
+
+    if (currentWindowName == OnlyTranslatedTextWindow)
+    {
+        QObject *currentWindow = viewImpl->findChild<QObject*>("onlyTranslatedTextWindow");
+        translatedTextRect = currentWindow->findChild<QObject*>("translatedTextRect");
+    }
+    else if (currentWindowName == MainWindow)
+    {
+        translatedTextRect = mainLayout->findChild<QObject*>("translatedTextRect");
+    }
     QObject *textArea = translatedTextRect->findChild<QObject*>("textArea");
     textArea->setProperty("text", text.c_str());
-
-    //QObject *translatedTextItem = mainLayout->findChild<QObject*>("translatedText");
-    //translatedTextItem->setProperty("text", text.c_str());
 }
 
 void MainView::showSupportedLangsList(std::map<std::string, std::string> langsMap)
@@ -62,22 +69,40 @@ void MainView::showSupportedLangsList(std::map<std::string, std::string> langsMa
 
 void MainView::showWelcomeWindow()
 {
-   std::cout << "text selected" << std::endl;
    QObject *welcomeWindow = viewImpl->findChild<QObject*>("welcomeWindow");
    QPoint cursorPoint(QCursor::pos());
    welcomeWindow->setProperty("x", cursorPoint.x());
    welcomeWindow->setProperty("y", cursorPoint.y());
    (static_cast<QQuickView*>(welcomeWindow))->show();
+   currentWindowName = WelcomeWindow;
 }
 
 void MainView::showMainWindow()
 {
     (static_cast<QQuickView*>(viewImpl))->show();
+    currentWindowName = MainWindow;
+}
+
+void MainView::showOnlyTranslatedTextWindow()
+{
+   QObject *translatedTextWindow = viewImpl->findChild<QObject*>("onlyTranslatedTextWindow");
+   QPoint cursorPoint(QCursor::pos());
+   //translatedTextWindow->setProperty("x", cursorPoint.x());
+   //translatedTextWindow->setProperty("y", cursorPoint.y());
+   //(static_cast<QQuickView*>(translatedTextWindow))->show();
+   currentWindowName = OnlyTranslatedTextWindow;
 }
 
 std::string MainView::getClipboardText()
 {
     return clipboardText.toStdString();
+}
+
+void MainView::setSourceText(std::string sourceText)
+{
+    QObject *sourceTextRect = mainLayout->findChild<QObject*>("sourceTextRect");
+    QObject *sourceTextItem = sourceTextRect->findChild<QObject*>("textArea");
+    sourceTextItem->setProperty("text", sourceText.c_str());
 }
 
 void MainView::translateButtonClicked()
@@ -87,13 +112,13 @@ void MainView::translateButtonClicked()
 
 void MainView::clipboardDataChanged()
 {
-   QString clipboardText = clipboard->text();//get current clipboard data
+   clipboardText = clipboard->text(QClipboard::Selection);//get current clipboard data
    mainPresenter->onClipboardDataChanged(clipboardText.toStdString());
 }
 
-void MainView::openMainWindowBtnClicked()
+void MainView::welcomeWindowBtnClicked()
 {
-    mainPresenter->onOpenMainWindow();
+    mainPresenter->onWelcomeWindowBtnClicked();
 }
 
 void MainView::connectToSignals()
@@ -104,6 +129,6 @@ void MainView::connectToSignals()
     QObject::connect(clipboard, SIGNAL(selectionChanged()),
                      this, SLOT(clipboardDataChanged()));
     QObject *welcomeWindow = viewImpl->findChild<QObject*>("welcomeWindow");
-    QObject::connect(welcomeWindow, SIGNAL(onOpenMainWindowBtnClicked()),
-                     this, SLOT(openMainWindowBtnClicked()));
+    QObject::connect(welcomeWindow, SIGNAL(onWelcomeWindowBtnClicked()),
+                     this, SLOT(welcomeWindowBtnClicked()));
 }

@@ -6,6 +6,7 @@
 class IMainView
 {
 public:
+    virtual void setSourceText(std::string sourceText) = 0;
     virtual std::string getSourceText() = 0;
     virtual std::string getSourceLanguage() = 0;
     virtual std::string getDestLanguage() = 0;
@@ -13,6 +14,7 @@ public:
     virtual void showSupportedLangsList(std::map<std::string, std::string>) = 0;
     virtual void showWelcomeWindow() = 0;
     virtual void showMainWindow() = 0;
+    virtual void showOnlyTranslatedTextWindow() = 0;
     virtual std::string getClipboardText() = 0;
 };
 

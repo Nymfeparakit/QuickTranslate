@@ -4,6 +4,12 @@
 #include <QtQuick>
 #include <QObject>
 
+enum WindowName {
+    WelcomeWindow,
+    OnlyTranslatedTextWindow,
+    MainWindow
+};
+
 class MainView : public QObject, IMainView
 {
     Q_OBJECT
@@ -17,12 +23,14 @@ public:
     void showSupportedLangsList(std::map<std::string, std::string>);
     void showWelcomeWindow() override;
     void showMainWindow() override;
+    void showOnlyTranslatedTextWindow() override;
     std::string getClipboardText() override;
+    void setSourceText(std::string sourceText) override;
 
 public slots:
     void translateButtonClicked();
     void clipboardDataChanged();
-    void openMainWindowBtnClicked();
+    void welcomeWindowBtnClicked();
 
 private:
     MainPresenter* mainPresenter;
@@ -30,6 +38,7 @@ private:
     QClipboard* clipboard;
     QObject* mainLayout;
     QString clipboardText;
+    WindowName currentWindowName;
     void connectToSignals();
 };
 

@@ -1,5 +1,4 @@
 #include "mainpresenter.h"
-#include "googletranslator.h"
 #include <QDebug>
 #include <iostream>
 
@@ -13,8 +12,7 @@ void MainPresenter::onTranslate()
     std::string text = mainView->getSourceText();
     std::string destLang = mainView->getDestLanguage(); //get dest language
     //get translation
-    GoogleTranslator t;
-    std::string translatedText = t.translate(text, destLang);
+    std::string translatedText = translator.translate(text, destLang);
     mainView->showTranslatedText(translatedText);
 }
 
@@ -23,9 +21,12 @@ void MainPresenter::onClipboardDataChanged(std::string newClipboardData)
     mainView->showWelcomeWindow();
 }
 
-void MainPresenter::onOpenMainWindow()
+void MainPresenter::onWelcomeWindowBtnClicked()
 {
-   mainView->showMainWindow();
+   mainView->showOnlyTranslatedTextWindow();
+   std::string currentClipboardText(mainView->getClipboardText());
+   std::string translatedText = translator.translate(currentClipboardText, "ru");
+   mainView->showTranslatedText(translatedText);
 }
 
 LanguagesList *MainPresenter::loadLanguagesList()

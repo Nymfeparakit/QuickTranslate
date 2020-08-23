@@ -2,6 +2,7 @@
 #define MAINPRESENTER_H
 #include "imainview.h"
 #include <languageslist.h>
+#include "googletranslator.h"
 
 class MainPresenter
 {
@@ -11,11 +12,12 @@ public:
     void setView(IMainView* _mainView);
     void onTranslate();
     void onClipboardDataChanged(std::string newClipboardData);
-    void onOpenMainWindow();
+    void onWelcomeWindowBtnClicked();
     LanguagesList* loadLanguagesList();
 
 private:
     IMainView *mainView;
+    GoogleTranslator translator;
 };
 
 #endif // MAINPRESENTER_H

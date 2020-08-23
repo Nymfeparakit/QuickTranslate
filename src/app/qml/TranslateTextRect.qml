@@ -11,7 +11,7 @@ import QtQuick 2.0
             anchors.rightMargin: 20
             anchors.topMargin: 10
             anchors.bottomMargin: 10
-            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+            text: "some text"
             //wrapMode: TextEdit.WordWrap
         }
 

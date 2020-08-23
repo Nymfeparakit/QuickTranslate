@@ -89,10 +89,18 @@ Window {
         visible: false
 
         onExitSignal: {
+            onlyTranslatedTextWindow.x = welcomeWindow.x
+            onlyTranslatedTextWindow.y = welcomeWindow.y
+            onlyTranslatedTextWindow.show()
             welcomeWindow.close()
-            onOpenMainWindowBtnClicked()
-            //mainWindow.show()
+            onWelcomeWindowBtnClicked()
         }
+    }
+
+    OnlyTranslatedTextWindow {
+       id: onlyTranslatedTextWindow
+       objectName: "onlyTranslatedTextWindow"
+       visible: false
     }
 }
 

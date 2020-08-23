@@ -8,14 +8,8 @@ Window {
     height: 140
     flags: Qt.FramelessWindowHint
 
-    /*function showAtPosition(xPos, yPos) {
-        show();
-        x = xPos;
-        y = yPos;
-    }*/
-
     signal exitSignal()
-    signal onOpenMainWindowBtnClicked()
+    signal onWelcomeWindowBtnClicked()
 
     Button {
        text: "open app"

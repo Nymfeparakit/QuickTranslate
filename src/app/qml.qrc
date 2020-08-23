@@ -7,7 +7,7 @@
         <file>qml/StyledTextItem.qml</file>
         <file>qml/TranslateTextRect.qml</file>
         <file>qml/SeparatingStrip.qml</file>
-        <file>qml/WelcomeButton.qml</file>
         <file>qml/WelcomeWindow.qml</file>
+        <file>qml/OnlyTranslatedTextWindow.qml</file>
     </qresource>
 </RCC>
