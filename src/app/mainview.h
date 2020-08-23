@@ -8,6 +8,7 @@ class MainView : public QObject, IMainView
 {
     Q_OBJECT
 public:
+    MainView() = default;
     MainView(QObject* _viewImpl);
     std::string getSourceText();
     std::string getSourceLanguage();
@@ -17,6 +18,7 @@ public:
 
 public slots:
     void translateButtonClicked();
+    void clipboardDataChanged();
 
 private:
     MainPresenter* mainPresenter;

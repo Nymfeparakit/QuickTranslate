@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.1
 import "."
 
 Window {
+    id: mainWindow
     visible: true
     width: 640
     height: 480
@@ -71,7 +72,6 @@ Window {
             objectName: "translateBtn"
             Layout.columnSpan: 1
             Layout.rowSpan: 1
-            //anchors.horizontalCenter: parent.horizontalCenter
             anchors.right: parent.right
 
             signal clickedSignal()
@@ -82,4 +82,17 @@ Window {
             }
         }
     }
+
+    WelcomeWindow {
+        id: welcomeWindow
+        objectName: "welcomeWindow"
+        visible: false
+
+        onExitSignal: {
+            welcomeWindow.close()
+            mainWindow.show()
+        }
+    }
 }
+
+

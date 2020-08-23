@@ -2,6 +2,7 @@
 #include <QDebug>
 #include <typeinfo>
 #include <langslistmodel.h>
+#include <iostream>
 
 MainView::MainView(QObject* _viewImpl)
      :viewImpl(_viewImpl)
@@ -60,6 +61,15 @@ void MainView::showSupportedLangsList(std::map<std::string, std::string> langsMa
 void MainView::translateButtonClicked()
 {
     mainPresenter->onTranslate();
+}
+
+void MainView::clipboardDataChanged()
+{
+   std::cout << "text selected" << std::endl;
+   QObject *welcomeWindow = viewImpl->findChild<QObject*>("welcomeWindow");
+   (static_cast<QQuickView*>(welcomeWindow))->show();
+
+   //(static_cast<QQuickView*>(viewImpl))->show();
 }
 
 void MainView::connectToSignals()
