@@ -10,6 +10,8 @@ public:
     MainPresenter() = default;
     void setView(IMainView* _mainView);
     void onTranslate();
+    void onClipboardDataChanged(std::string newClipboardData);
+    void onOpenMainWindow();
     LanguagesList* loadLanguagesList();
 
 private:

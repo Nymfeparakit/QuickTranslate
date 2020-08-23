@@ -6,7 +6,7 @@ import "."
 
 Window {
     id: mainWindow
-    visible: true
+    visible: false
     width: 640
     height: 480
     title: qsTr("")
@@ -90,7 +90,8 @@ Window {
 
         onExitSignal: {
             welcomeWindow.close()
-            mainWindow.show()
+            onOpenMainWindowBtnClicked()
+            //mainWindow.show()
         }
     }
 }

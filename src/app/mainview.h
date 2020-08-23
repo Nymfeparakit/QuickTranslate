@@ -9,21 +9,27 @@ class MainView : public QObject, IMainView
     Q_OBJECT
 public:
     MainView() = default;
-    MainView(QObject* _viewImpl);
-    std::string getSourceText();
-    std::string getSourceLanguage();
-    std::string getDestLanguage();
-    void showTranslatedText(std::string text);
+    MainView(QObject *_viewImpl, QClipboard *_clipboard);
+    std::string getSourceText() override;
+    std::string getSourceLanguage() override;
+    std::string getDestLanguage() override;
+    void showTranslatedText(std::string text) override;
     void showSupportedLangsList(std::map<std::string, std::string>);
+    void showWelcomeWindow() override;
+    void showMainWindow() override;
+    std::string getClipboardText() override;
 
 public slots:
     void translateButtonClicked();
     void clipboardDataChanged();
+    void openMainWindowBtnClicked();
 
 private:
     MainPresenter* mainPresenter;
     QObject* viewImpl;
+    QClipboard* clipboard;
     QObject* mainLayout;
+    QString clipboardText;
     void connectToSignals();
 };
 

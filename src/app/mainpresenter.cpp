@@ -18,6 +18,16 @@ void MainPresenter::onTranslate()
     mainView->showTranslatedText(translatedText);
 }
 
+void MainPresenter::onClipboardDataChanged(std::string newClipboardData)
+{
+    mainView->showWelcomeWindow();
+}
+
+void MainPresenter::onOpenMainWindow()
+{
+   mainView->showMainWindow();
+}
+
 LanguagesList *MainPresenter::loadLanguagesList()
 {
    GoogleTranslator t;
@@ -30,4 +40,5 @@ LanguagesList *MainPresenter::loadLanguagesList()
    }
    return langsList;
 }
+
 

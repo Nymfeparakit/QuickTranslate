@@ -3,9 +3,11 @@
 #include <typeinfo>
 #include <langslistmodel.h>
 #include <iostream>
+#include <QCursor>
 
-MainView::MainView(QObject* _viewImpl)
-     :viewImpl(_viewImpl)
+MainView::MainView(QObject* _viewImpl, QClipboard *_clipboard)
+     :viewImpl(_viewImpl),
+       clipboard(_clipboard)
 {
     mainPresenter = new MainPresenter(this);
     mainLayout = (static_cast<QQuickView*>(viewImpl))->rootObject();
@@ -58,6 +60,26 @@ void MainView::showSupportedLangsList(std::map<std::string, std::string> langsMa
     */
 }
 
+void MainView::showWelcomeWindow()
+{
+   std::cout << "text selected" << std::endl;
+   QObject *welcomeWindow = viewImpl->findChild<QObject*>("welcomeWindow");
+   QPoint cursorPoint(QCursor::pos());
+   welcomeWindow->setProperty("x", cursorPoint.x());
+   welcomeWindow->setProperty("y", cursorPoint.y());
+   (static_cast<QQuickView*>(welcomeWindow))->show();
+}
+
+void MainView::showMainWindow()
+{
+    (static_cast<QQuickView*>(viewImpl))->show();
+}
+
+std::string MainView::getClipboardText()
+{
+    return clipboardText.toStdString();
+}
+
 void MainView::translateButtonClicked()
 {
     mainPresenter->onTranslate();
@@ -65,11 +87,13 @@ void MainView::translateButtonClicked()
 
 void MainView::clipboardDataChanged()
 {
-   std::cout << "text selected" << std::endl;
-   QObject *welcomeWindow = viewImpl->findChild<QObject*>("welcomeWindow");
-   (static_cast<QQuickView*>(welcomeWindow))->show();
+   QString clipboardText = clipboard->text();//get current clipboard data
+   mainPresenter->onClipboardDataChanged(clipboardText.toStdString());
+}
 
-   //(static_cast<QQuickView*>(viewImpl))->show();
+void MainView::openMainWindowBtnClicked()
+{
+    mainPresenter->onOpenMainWindow();
 }
 
 void MainView::connectToSignals()
@@ -77,4 +101,9 @@ void MainView::connectToSignals()
     QObject *translateBtn = mainLayout->findChild<QObject*>("translateBtn");
     QObject::connect(translateBtn, SIGNAL(clickedSignal()),
                      this, SLOT(translateButtonClicked()));
+    QObject::connect(clipboard, SIGNAL(selectionChanged()),
+                     this, SLOT(clipboardDataChanged()));
+    QObject *welcomeWindow = viewImpl->findChild<QObject*>("welcomeWindow");
+    QObject::connect(welcomeWindow, SIGNAL(onOpenMainWindowBtnClicked()),
+                     this, SLOT(openMainWindowBtnClicked()));
 }
