@@ -4,8 +4,8 @@ import QtQuick.Controls 2.2
 
 Window {
 
-    width: 50
-    height: 50
+    width: 30
+    height: 30
     flags: Qt.FramelessWindowHint
 
     signal exitSignal()
@@ -19,6 +19,7 @@ Window {
     }*/
 
     Image {
+        anchors.fill: parent
         source: "qrc:/qml/resources/google-translate-icon.svg"
 
         MouseArea {

@@ -12,6 +12,13 @@ Window {
     title: qsTr("")
     color: "#333333"
 
+    signal mainWindowClosed()
+
+    onClosing: {
+        //console.log("closing window");
+        mainWindowClosed()
+    }
+
     GridLayout {
         objectName: "mainLayout"
 

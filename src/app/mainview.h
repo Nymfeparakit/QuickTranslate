@@ -33,6 +33,7 @@ public slots:
     void clipboardDataChanged();
     void welcomeWindowBtnClicked();
     void expandBtnClicked();
+    void mainWindowClosed();
 
 private:
     MainPresenter* mainPresenter;

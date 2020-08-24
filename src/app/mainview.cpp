@@ -138,6 +138,11 @@ void MainView::expandBtnClicked()
     mainPresenter->onOpenMainWindow();
 }
 
+void MainView::mainWindowClosed()
+{
+   currentWindowName = NoWindow;
+}
+
 void MainView::connectToSignals()
 {
     QObject *translateBtn = mainLayout->findChild<QObject*>("translateBtn");
@@ -151,4 +156,6 @@ void MainView::connectToSignals()
     QObject *translatedTextWindow = viewImpl->findChild<QObject*>("onlyTranslatedTextWindow");
     QObject::connect(translatedTextWindow, SIGNAL(onExpandBtnClicked()),
                      this, SLOT(expandBtnClicked()));
+    QObject::connect(viewImpl, SIGNAL(mainWindowClosed()),
+                     this, SLOT(mainWindowClosed()));
 }
