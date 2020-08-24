@@ -12,7 +12,8 @@ public:
     void setView(IMainView* _mainView);
     void onTranslate();
     void onClipboardDataChanged(std::string newClipboardData);
-    void onWelcomeWindowBtnClicked();
+    void onOpenTranslatedTextWindow();
+    void onOpenMainWindow();
     LanguagesList* loadLanguagesList();
 
 private:

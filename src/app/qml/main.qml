@@ -12,7 +12,6 @@ Window {
     title: qsTr("")
     color: "#333333"
 
-
     GridLayout {
         objectName: "mainLayout"
 
@@ -101,6 +100,12 @@ Window {
        id: onlyTranslatedTextWindow
        objectName: "onlyTranslatedTextWindow"
        visible: false
+
+       onExitSignal: {
+            mainWindow.show()
+            onlyTranslatedTextWindow.close()
+            onExpandBtnClicked()
+        }
     }
 }
 

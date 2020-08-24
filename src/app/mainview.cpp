@@ -13,6 +13,7 @@ MainView::MainView(QObject* _viewImpl, QClipboard *_clipboard)
     mainLayout = (static_cast<QQuickView*>(viewImpl))->rootObject();
     mainLayout = viewImpl->children().at(1);
     connectToSignals();
+    currentWindowName = NoWindow;
 }
 
 std::string MainView::getSourceText()
@@ -70,6 +71,15 @@ void MainView::showSupportedLangsList(std::map<std::string, std::string> langsMa
 void MainView::showWelcomeWindow()
 {
    QObject *welcomeWindow = viewImpl->findChild<QObject*>("welcomeWindow");
+   if (currentWindowName == WelcomeWindow) {
+       (static_cast<QQuickView*>(welcomeWindow))->close();
+   }
+   else if (currentWindowName == OnlyTranslatedTextWindow) {
+       QObject *translatedTextWindow = viewImpl->findChild<QObject*>("onlyTranslatedTextWindow");
+       (static_cast<QQuickView*>(translatedTextWindow))->close();
+   } else if (currentWindowName == MainWindow) {
+       return;
+   }
    QPoint cursorPoint(QCursor::pos());
    welcomeWindow->setProperty("x", cursorPoint.x());
    welcomeWindow->setProperty("y", cursorPoint.y());
@@ -118,7 +128,14 @@ void MainView::clipboardDataChanged()
 
 void MainView::welcomeWindowBtnClicked()
 {
-    mainPresenter->onWelcomeWindowBtnClicked();
+    currentWindowName = OnlyTranslatedTextWindow;
+    mainPresenter->onOpenTranslatedTextWindow();
+}
+
+void MainView::expandBtnClicked()
+{
+    currentWindowName = MainWindow;
+    mainPresenter->onOpenMainWindow();
 }
 
 void MainView::connectToSignals()
@@ -131,4 +148,7 @@ void MainView::connectToSignals()
     QObject *welcomeWindow = viewImpl->findChild<QObject*>("welcomeWindow");
     QObject::connect(welcomeWindow, SIGNAL(onWelcomeWindowBtnClicked()),
                      this, SLOT(welcomeWindowBtnClicked()));
+    QObject *translatedTextWindow = viewImpl->findChild<QObject*>("onlyTranslatedTextWindow");
+    QObject::connect(translatedTextWindow, SIGNAL(onExpandBtnClicked()),
+                     this, SLOT(expandBtnClicked()));
 }

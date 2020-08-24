@@ -21,11 +21,18 @@ void MainPresenter::onClipboardDataChanged(std::string newClipboardData)
     mainView->showWelcomeWindow();
 }
 
-void MainPresenter::onWelcomeWindowBtnClicked()
+void MainPresenter::onOpenTranslatedTextWindow()
 {
-   mainView->showOnlyTranslatedTextWindow();
    std::string currentClipboardText(mainView->getClipboardText());
    std::string translatedText = translator.translate(currentClipboardText, "ru");
+   mainView->showTranslatedText(translatedText);
+}
+
+void MainPresenter::onOpenMainWindow()
+{
+   std::string currentClipboardText(mainView->getClipboardText());
+   std::string translatedText = translator.translate(currentClipboardText, "ru");
+   mainView->setSourceText(currentClipboardText);
    mainView->showTranslatedText(translatedText);
 }
 

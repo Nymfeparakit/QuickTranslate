@@ -4,18 +4,29 @@ import QtQuick.Controls 2.2
 
 Window {
 
-    width: 320
-    height: 140
+    width: 50
+    height: 50
     flags: Qt.FramelessWindowHint
 
     signal exitSignal()
     signal onWelcomeWindowBtnClicked()
 
-    Button {
+    /*Button {
        text: "open app"
        onClicked: {
            exitSignal()
        }
+    }*/
+
+    Image {
+        source: "qrc:/qml/resources/google-translate-icon.svg"
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                exitSignal()
+            }
+        }
     }
 
 }

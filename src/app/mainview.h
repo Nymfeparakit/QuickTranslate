@@ -5,6 +5,7 @@
 #include <QObject>
 
 enum WindowName {
+    NoWindow,
     WelcomeWindow,
     OnlyTranslatedTextWindow,
     MainWindow
@@ -31,6 +32,7 @@ public slots:
     void translateButtonClicked();
     void clipboardDataChanged();
     void welcomeWindowBtnClicked();
+    void expandBtnClicked();
 
 private:
     MainPresenter* mainPresenter;
