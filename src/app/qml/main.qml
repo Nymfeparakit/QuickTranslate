@@ -52,6 +52,8 @@ Window {
         mainWindow.width = 30
         mainWindow.height = 30
         mainWindow.color = "#FFFFFF"
+        mainWindow.x = cursorPosProvider.cursorPos().x
+        mainWindow.y = cursorPosProvider.cursorPos().y
         currItem = stackView.replace("qrc:/qml/WelcomeButtonItem.qml")
         currItem.width = 30
         currItem.height = 30

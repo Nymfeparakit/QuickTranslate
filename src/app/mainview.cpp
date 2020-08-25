@@ -120,13 +120,11 @@ void MainView::clipboardDataChanged()
 
 void MainView::welcomeWindowBtnClicked()
 {
-    currentWindowName = OnlyTranslatedTextWindow;
     mainPresenter->onOpenTranslatedTextWindow();
 }
 
 void MainView::expandBtnClicked()
 {
-    currentWindowName = MainWindow;
     mainPresenter->onOpenMainWindow();
 }
 

@@ -20,6 +20,7 @@ set(SOURCES
     translatorworker.h
 )
 set(HEADERS
+    cursorposprovider.h
     googletranslator.h
     imainview.h
     langslistmodel.h

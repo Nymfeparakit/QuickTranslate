@@ -38,7 +38,7 @@ Item {
             onClicked: {
                 stackView.replace("qrc:/qml/FullLayoutItem.qml")
                 mainWindow.width = 640
-                mainWindow.height = 480
+                mainWindow.height = 520
                 mainWindow.color = "#333333"
                 mainWindow.flags = Qt.Window
                 stackView.width = 640

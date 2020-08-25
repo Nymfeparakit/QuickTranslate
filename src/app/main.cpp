@@ -4,6 +4,7 @@
 #include "mainpresenter.h"
 #include <langslistmodel.h>
 #include "languageslist.h"
+#include "cursorposprovider.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,8 +14,10 @@ int main(int argc, char *argv[])
     app.setQuitOnLastWindowClosed(false);
 
     qmlRegisterType<LangsListModel>("Languages", 1, 0, "LangsListModel");
+    CursorPosProvider cursorPosProvider;
 
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("cursorPosProvider", &cursorPosProvider);
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 
     QObject* mainViewImpl = engine.rootObjects().at(0);
