@@ -11,13 +11,6 @@ Window {
     signal exitSignal()
     signal onWelcomeWindowBtnClicked()
 
-    /*Button {
-       text: "open app"
-       onClicked: {
-           exitSignal()
-       }
-    }*/
-
     Image {
         anchors.fill: parent
         source: "qrc:/qml/resources/google-translate-icon.svg"

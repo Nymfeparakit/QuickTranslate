@@ -7,9 +7,10 @@
         <file>qml/StyledTextItem.qml</file>
         <file>qml/TranslateTextRect.qml</file>
         <file>qml/SeparatingStrip.qml</file>
-        <file>qml/WelcomeWindow.qml</file>
-        <file>qml/OnlyTranslatedTextWindow.qml</file>
         <file>qml/resources/google-translate-icon.svg</file>
         <file>qml/resources/expand-more-icon.svg</file>
+        <file>qml/WelcomeButtonItem.qml</file>
+        <file>qml/TranslatedTextItem.qml</file>
+        <file>qml/FullLayoutItem.qml</file>
     </qresource>
 </RCC>

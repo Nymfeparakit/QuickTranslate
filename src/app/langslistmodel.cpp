@@ -4,20 +4,7 @@ LangsListModel::LangsListModel(QObject *parent)
     :QAbstractListModel(parent)
 {
     mLangsList = mainPresenter.loadLanguagesList();
-    //mLangsList = new LanguagesList();
-    //LanguageItem temp("code1", "name1");
-    //LanguageItem temp2("code2", "name2");
-    //mLangsList->append(temp);
-    //mLangsList->append(temp2);
 }
-
-/*
-LangsListModel::LangsListModel(const LanguagesList &_langsList, QObject *parent)
-    :QAbstractListModel(parent), mLangsList(_langsList)
-{
-
-}
-*/
 
 int LangsListModel::rowCount(const QModelIndex &parent) const
 {

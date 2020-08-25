@@ -11,7 +11,9 @@ enum WindowName {
     MainWindow
 };
 
-class MainView : public QObject, IMainView
+class MainPresenter;
+
+class MainView : public QObject, public IMainView
 {
     Q_OBJECT
 public:
@@ -21,12 +23,14 @@ public:
     std::string getSourceLanguage() override;
     std::string getDestLanguage() override;
     void showTranslatedText(std::string text) override;
-    void showSupportedLangsList(std::map<std::string, std::string>);
     void showWelcomeWindow() override;
     void showMainWindow() override;
     void showOnlyTranslatedTextWindow() override;
     std::string getClipboardText() override;
     void setSourceText(std::string sourceText) override;
+    void setTranslatedText(std::string text) override;
+    std::string showBusyIndicator() override;
+    std::string getTranslatedText();
 
 public slots:
     void translateButtonClicked();
@@ -34,14 +38,16 @@ public slots:
     void welcomeWindowBtnClicked();
     void expandBtnClicked();
     void mainWindowClosed();
+    void translationIsReady(QString);
 
 private:
     MainPresenter* mainPresenter;
     QObject* viewImpl;
     QClipboard* clipboard;
-    QObject* mainLayout;
     QString clipboardText;
+    QString translatedClipboardText;
     WindowName currentWindowName;
+    QObject* stackView;
     void connectToSignals();
 };
 

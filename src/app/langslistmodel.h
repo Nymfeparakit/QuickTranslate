@@ -8,11 +8,9 @@
 class LangsListModel : public QAbstractListModel
 {
     Q_OBJECT
-    //Q_PROPERTY(LanguagesList *langsList READ langsList WRITE setLangsList)
 
 public:
     explicit LangsListModel(QObject *parent = nullptr);
-    //LangsListModel(const LanguagesList& _langsList, QObject* parent = nullptr);
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role=Qt::DisplayRole) const override;
 
@@ -22,7 +20,6 @@ public:
     QHash<int, QByteArray> roleNames() const override;
 
 private:
-    //std::map<int, std::pair<std::string, std::string>>langsList;
     LanguagesList* mLangsList;
     MainPresenter mainPresenter;
 

@@ -11,11 +11,13 @@ public:
     virtual std::string getSourceLanguage() = 0;
     virtual std::string getDestLanguage() = 0;
     virtual void showTranslatedText(std::string text) = 0;
-    virtual void showSupportedLangsList(std::map<std::string, std::string>) = 0;
+    virtual void setTranslatedText(std::string text) = 0;
+    virtual std::string getTranslatedText() = 0;
     virtual void showWelcomeWindow() = 0;
     virtual void showMainWindow() = 0;
     virtual void showOnlyTranslatedTextWindow() = 0;
     virtual std::string getClipboardText() = 0;
+    virtual std::string showBusyIndicator() = 0;
 };
 
 #endif // IMAINVIEW_H

@@ -17,6 +17,7 @@ set(SOURCES
     main.cpp
     mainpresenter.cpp
     mainview.cpp
+    translatorworker.h
 )
 set(HEADERS
     googletranslator.h
@@ -25,6 +26,7 @@ set(HEADERS
     languageslist.h
     mainpresenter.h
     mainview.h
+    translatorworker.cpp
 )
 
 add_executable(${APP_EXE} ${SOURCES} ${HEADERS} "qml.qrc")

@@ -16,22 +16,27 @@ void MainPresenter::onTranslate()
     mainView->showTranslatedText(translatedText);
 }
 
-void MainPresenter::onClipboardDataChanged(std::string newClipboardData)
+void MainPresenter::onClipboardDataChanged()
 {
-    mainView->showWelcomeWindow();
+   std::string currentClipboardText(mainView->getClipboardText());
+   //std::string translatedText = translator.translate(currentClipboardText, "ru");
+   //mainView->setTranslatedText(translatedText);
+    //mainView->showWelcomeWindow();
 }
 
 void MainPresenter::onOpenTranslatedTextWindow()
 {
    std::string currentClipboardText(mainView->getClipboardText());
-   std::string translatedText = translator.translate(currentClipboardText, "ru");
-   mainView->showTranslatedText(translatedText);
+   QThread *thread = new QThread;
+   TranslatorWorker *worker = new TranslatorWorker(mainView, thread, currentClipboardText, "ru");
+   worker->moveToThread(thread);
+   thread->start();
 }
 
 void MainPresenter::onOpenMainWindow()
 {
+   std::string translatedText = mainView->getTranslatedText();
    std::string currentClipboardText(mainView->getClipboardText());
-   std::string translatedText = translator.translate(currentClipboardText, "ru");
    mainView->setSourceText(currentClipboardText);
    mainView->showTranslatedText(translatedText);
 }

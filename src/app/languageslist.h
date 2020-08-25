@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include <string>
-//#include <QVector>
 
 struct LanguageItem {
     std::string code;
@@ -22,8 +21,6 @@ class LanguagesList : public QObject
 public:
     LanguagesList(QObject *parent = nullptr);
     LanguagesList(const LanguagesList& l);
-    //LanguagesList& operator=(const LanguagesList&);
-    //LanguagesList& operator=(LanguagesList&);
     std::vector<LanguageItem> items() const;
     void append(LanguageItem item);
     int size() const;
@@ -34,7 +31,6 @@ signals:
 public slots:
 
 private:
-    //QVector<LanguageItem> mItems;
     std::vector<LanguageItem> mItems;
 };
 

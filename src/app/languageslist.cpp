@@ -11,20 +11,6 @@ LanguagesList::LanguagesList(const LanguagesList &other)
     mItems = other.items();
 }
 
-/*
-LanguagesList &LanguagesList::operator=(const LanguagesList &other)
-{
-    mItems = other.items();
-    return *this;
-}
-
-LanguagesList &LanguagesList::operator=(LanguagesList &other)
-{
-    mItems = other.items();
-    return *this;
-}
-*/
-
 std::vector<LanguageItem> LanguagesList::items() const
 {
    return mItems;

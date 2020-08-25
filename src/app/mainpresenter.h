@@ -3,6 +3,8 @@
 #include "imainview.h"
 #include <languageslist.h>
 #include "googletranslator.h"
+#include "translatorworker.h"
+#include <QThread>
 
 class MainPresenter
 {
@@ -11,7 +13,7 @@ public:
     MainPresenter() = default;
     void setView(IMainView* _mainView);
     void onTranslate();
-    void onClipboardDataChanged(std::string newClipboardData);
+    void onClipboardDataChanged();
     void onOpenTranslatedTextWindow();
     void onOpenMainWindow();
     LanguagesList* loadLanguagesList();
