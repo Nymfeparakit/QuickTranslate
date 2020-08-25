@@ -63,7 +63,7 @@ Item {
             Layout.rowSpan: 1
             anchors.right: parent.right
 
-            onClicked: translateButtonClicked()
+            onClicked: translateBtnClicked()
 
             contentItem: StyledTextItem {
                 text: "Translate"
