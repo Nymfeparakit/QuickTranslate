@@ -18,7 +18,9 @@ Window {
     signal expandBtnClicked()
     signal fullWindowClosed()
 
-    onClosing: fullWindowClosed()
+    onClosing: {
+        stackView.clear()
+    }
 
     function showBusyIndicator() {
         busyIndicator.running = true
@@ -45,7 +47,8 @@ Window {
 
     function onClipboardDataChanged() {
         //console.log("calling onClipboardDataChanged")
-        var currItem = stackView.currentItem;
+        var currItem = stackView.currentItem
+        console.log("curr item: " + currItem)
         if (currItem !== null && currItem.objectName == "fullLayoutItem") {
             return;
         }
@@ -54,10 +57,12 @@ Window {
         mainWindow.color = "#FFFFFF"
         mainWindow.x = cursorPosProvider.cursorPos().x
         mainWindow.y = cursorPosProvider.cursorPos().y
+        mainWindow.flags = Qt.FramelessWindowHint
         currItem = stackView.replace("qrc:/qml/WelcomeButtonItem.qml")
         currItem.width = 30
         currItem.height = 30
-        mainWindow.visible = true;
+        mainWindow.visible = true
+        mainWindow.requestActivate()
     }
 
     function replaceAndShowItemAtPosition(itemUrl, xPos, yPos) {

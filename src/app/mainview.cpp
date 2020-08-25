@@ -150,7 +150,7 @@ void MainView::connectToSignals()
                      this, SLOT(welcomeWindowBtnClicked()));
     QObject::connect(viewImpl, SIGNAL(expandBtnClicked()),
                      this, SLOT(expandBtnClicked()));
-    QObject::connect(viewImpl, SIGNAL(fullWindowClosed()),
-                     this, SLOT(mainWindowClosed()));
+    //QObject::connect(viewImpl, SIGNAL(fullWindowClosed()),
+                     //this, SLOT(mainWindowClosed()));
 
 }
