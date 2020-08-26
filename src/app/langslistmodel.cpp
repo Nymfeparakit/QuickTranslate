@@ -8,9 +8,7 @@ LangsListModel::LangsListModel(QObject *parent)
 
 int LangsListModel::rowCount(const QModelIndex &parent) const
 {
-   int a = mLangsList->size();
-   return a;
-   //return mLangsList->size();
+   return mLangsList->size();
 }
 
 QVariant LangsListModel::data(const QModelIndex &index, int role) const

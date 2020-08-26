@@ -11,7 +11,6 @@ MainView::MainView(QObject* _viewImpl, QClipboard *_clipboard)
 {
     mainPresenter = new MainPresenter(this);
     connectToSignals();
-    currentWindowName = NoWindow;
 }
 
 std::string MainView::getSourceText()
@@ -45,6 +44,7 @@ void MainView::showTranslatedText(std::string text)
                               Q_RETURN_ARG(QVariant, currentItemName));
     QString currentItemNameStr = currentItemName.toString();
 
+    //place where the translated text should appear depends on which window is currently open
     if (currentItemNameStr == "translatedTextWindow") {
         QObject *currentWindow = viewImpl->findChild<QObject*>("translatedTextWindow");
         translatedTextRect = currentWindow->findChild<QObject*>("translatedTextRect");
@@ -54,30 +54,7 @@ void MainView::showTranslatedText(std::string text)
     }
 
     QObject *textArea = translatedTextRect->findChild<QObject*>("textArea");
-    textArea->setProperty("text", text.c_str());
-}
-
-void MainView::showWelcomeWindow()
-{
-   QObject *welcomeWindow = viewImpl->findChild<QObject*>("welcomeButtonItem");
-   QObject *stackView = viewImpl->findChild<QObject*>("stackView");
-   QQuickItem currentItem;
-   QPoint cursorPoint(QCursor::pos());
-}
-
-void MainView::showMainWindow()
-{
-    (static_cast<QQuickView*>(viewImpl))->show();
-}
-
-void MainView::showOnlyTranslatedTextWindow()
-{
-   QObject *translatedTextWindow = viewImpl->findChild<QObject*>("onlyTranslatedTextWindow");
-   QPoint cursorPoint(QCursor::pos());
-   //translatedTextWindow->setProperty("x", cursorPoint.x());
-   //translatedTextWindow->setProperty("y", cursorPoint.y());
-   //(static_cast<QQuickView*>(translatedTextWindow))->show();
-   currentWindowName = OnlyTranslatedTextWindow;
+    textArea->setProperty("text", text.c_str()); //set translated text in area
 }
 
 std::string MainView::getClipboardText()
@@ -112,6 +89,7 @@ void MainView::translateButtonClicked()
     mainPresenter->onTranslate();
 }
 
+//currently gets data only for X11 selection
 void MainView::clipboardDataChanged()
 {
     clipboardText = clipboard->text(QClipboard::Selection);//get current clipboard data
@@ -128,17 +106,13 @@ void MainView::expandBtnClicked()
     mainPresenter->onOpenMainWindow();
 }
 
-void MainView::mainWindowClosed()
-{
-    currentWindowName = NoWindow;
-}
-
 void MainView::translationIsReady(QString text)
 {
     setTranslatedText(text.toStdString());
     showTranslatedText(text.toStdString());
 }
 
+// connect slots to signals of qml elements
 void MainView::connectToSignals()
 {
 

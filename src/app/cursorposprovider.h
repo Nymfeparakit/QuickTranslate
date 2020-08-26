@@ -13,6 +13,7 @@ public:
 
 public slots:
 
+    // gets current cursor position
     QPoint cursorPos()
     {
         return QCursor::pos();

@@ -9,6 +9,7 @@
 
 class MainView;
 
+// class that supposed to be moved to separate thread to do translation work
 class TranslatorWorker : public QObject {
   Q_OBJECT
 

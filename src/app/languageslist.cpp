@@ -7,7 +7,6 @@ LanguagesList::LanguagesList(QObject *parent) : QObject(parent)
 
 LanguagesList::LanguagesList(const LanguagesList &other)
 {
-    int a = 0;
     mItems = other.items();
 }
 

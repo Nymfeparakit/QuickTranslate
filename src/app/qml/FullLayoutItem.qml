@@ -24,6 +24,7 @@ Item {
             font.bold: true
         }
 
+        // text field with source text
         TranslateTextRect {
             objectName: "sourceTextRect"
 
@@ -40,6 +41,7 @@ Item {
             Layout.fillWidth: true
         }
 
+        // text field with translated text
         TranslateTextRect {
             objectName: "translatedTextRect"
             Layout.columnSpan: 3
@@ -48,6 +50,7 @@ Item {
             Layout.fillWidth: true
         }
 
+        // combobox of supported languages
         LanguageBox {
             objectName: "destLangBox"
 

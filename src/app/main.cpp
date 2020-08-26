@@ -11,8 +11,10 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
+    // app should stil work when window closed
     app.setQuitOnLastWindowClosed(false);
 
+    //register LangsListModel to use it in LanguageBox
     qmlRegisterType<LangsListModel>("Languages", 1, 0, "LangsListModel");
     CursorPosProvider cursorPosProvider;
 

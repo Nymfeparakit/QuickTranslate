@@ -23,9 +23,6 @@ public:
     std::string getSourceLanguage() override;
     std::string getDestLanguage() override;
     void showTranslatedText(std::string text) override;
-    void showWelcomeWindow() override;
-    void showMainWindow() override;
-    void showOnlyTranslatedTextWindow() override;
     std::string getClipboardText() override;
     void setSourceText(std::string sourceText) override;
     void setTranslatedText(std::string text) override;
@@ -36,18 +33,16 @@ public slots:
     void translateButtonClicked();
     void clipboardDataChanged();
     void welcomeWindowBtnClicked();
-    void expandBtnClicked();
-    void mainWindowClosed();
+    void expandBtnClicked(); // button to expand to main window is clicked
     void translationIsReady(QString);
 
 private:
     MainPresenter* mainPresenter;
-    QObject* viewImpl;
+    QObject* viewImpl; // implementation of view in qml
     QClipboard* clipboard;
     QString clipboardText;
     QString translatedClipboardText;
-    WindowName currentWindowName;
-    QObject* stackView;
+    QObject* stackView; // stackview that always contains one current visible item
     void connectToSignals();
 };
 

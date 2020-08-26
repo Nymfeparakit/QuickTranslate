@@ -10,7 +10,7 @@ Window {
     visible: false
     width: 30
     height: 30
-    title: qsTr("")
+    title: qsTr("QuickTranslate")
     flags: Qt.FramelessWindowHint
 
     signal translateBtnClicked()
@@ -36,33 +36,35 @@ Window {
         objectName: "stackView"
         width: 30
         height: 30
-        //initialItem: "qrc:/qml/WelcomeButtonItem.qml"
     }
 
+    // get name of current visible item
     function getCurrentItemName() {
         var currentItemName = stackView.currentItem.objectName;
-        //console.log("current item name: " + currentItemName);
         return currentItemName;
     }
 
     function onClipboardDataChanged() {
-        //console.log("calling onClipboardDataChanged")
         var currItem = stackView.currentItem
-        console.log("curr item: " + currItem)
+        // if FullLayoutItem is currently visible do nothing
         if (currItem !== null && currItem.objectName == "fullLayoutItem") {
             return;
         }
         mainWindow.width = 30
         mainWindow.height = 30
         mainWindow.color = "#FFFFFF"
+
+        //window opens at current cursor position
         mainWindow.x = cursorPosProvider.cursorPos().x
         mainWindow.y = cursorPosProvider.cursorPos().y
+
+        // window has no border
         mainWindow.flags = Qt.FramelessWindowHint
         currItem = stackView.replace("qrc:/qml/WelcomeButtonItem.qml")
         currItem.width = 30
         currItem.height = 30
         mainWindow.visible = true
-        mainWindow.requestActivate()
+        mainWindow.requestActivate() //request window to get focus after opened
     }
 
     function replaceAndShowItemAtPosition(itemUrl, xPos, yPos) {

@@ -12,11 +12,10 @@ public:
     MainPresenter(IMainView *_mainView);
     MainPresenter() = default;
     void setView(IMainView* _mainView);
-    void onTranslate();
-    void onClipboardDataChanged();
-    void onOpenTranslatedTextWindow();
-    void onOpenMainWindow();
-    LanguagesList* loadLanguagesList();
+    void onTranslate(); // method is called when user demands translation
+    void onOpenTranslatedTextWindow(); // method is called when window with only translated text is opened
+    void onOpenMainWindow();// method is called when main window with source and translated text is opened
+    LanguagesList* loadLanguagesList(); // get from current translator languages list
 
 private:
     IMainView *mainView;

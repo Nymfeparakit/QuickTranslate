@@ -21,10 +21,10 @@ class LanguagesList : public QObject
 public:
     LanguagesList(QObject *parent = nullptr);
     LanguagesList(const LanguagesList& l);
-    std::vector<LanguageItem> items() const;
+    std::vector<LanguageItem> items() const; // get items but as vector
     void append(LanguageItem item);
     int size() const;
-    LanguageItem at(const int index) const;
+    LanguageItem at(const int index) const; // get item at specified index
 
 signals:
 

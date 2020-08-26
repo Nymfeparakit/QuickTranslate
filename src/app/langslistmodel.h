@@ -5,6 +5,7 @@
 #include "languageslist.h"
 #include "mainpresenter.h"
 
+// model for list of languages
 class LangsListModel : public QAbstractListModel
 {
     Q_OBJECT
@@ -20,11 +21,11 @@ public:
     QHash<int, QByteArray> roleNames() const override;
 
 private:
-    LanguagesList* mLangsList;
+    LanguagesList* mLangsList; // this list contains data for model
     MainPresenter mainPresenter;
 
     enum {
-        NameRole = Qt::UserRole
+        NameRole = Qt::UserRole //single role for language name
     };
 };
 
