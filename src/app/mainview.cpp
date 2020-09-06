@@ -9,7 +9,7 @@ MainView::MainView(QObject* _viewImpl, QClipboard *_clipboard)
      :viewImpl(_viewImpl),
        clipboard(_clipboard)
 {
-    mainPresenter = new MainPresenter(this);
+    mainPresenter = std::unique_ptr<MainPresenter>(new MainPresenter(this));
     connectToSignals();
 }
 

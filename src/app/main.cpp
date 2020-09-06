@@ -5,6 +5,7 @@
 #include <langslistmodel.h>
 #include "languageslist.h"
 #include "cursorposprovider.h"
+#include <memory>
 
 int main(int argc, char *argv[])
 {
@@ -24,7 +25,7 @@ int main(int argc, char *argv[])
 
     QObject* mainViewImpl = engine.rootObjects().at(0);
     QClipboard *clipboard = QGuiApplication::clipboard();
-    MainView *mainView = new MainView(mainViewImpl, clipboard);
+    std::shared_ptr<MainView> mainView(new MainView(mainViewImpl, clipboard));
 
     return app.exec();
 }

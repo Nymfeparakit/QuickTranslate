@@ -3,6 +3,7 @@
 #include "mainpresenter.h"
 #include <QtQuick>
 #include <QObject>
+#include <memory>
 
 enum WindowName {
     NoWindow,
@@ -37,7 +38,7 @@ public slots:
     void translationIsReady(QString);
 
 private:
-    MainPresenter* mainPresenter;
+    std::unique_ptr<MainPresenter> mainPresenter;
     QObject* viewImpl; // implementation of view in qml
     QClipboard* clipboard;
     QString clipboardText;
